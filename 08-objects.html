@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Objects</title>
+	</head>
+	<body>
+		<script>
+			const product = {
+				name: "socks",
+				price: 1090
+			};
+
+			console.log(product, product.name, product.price);
+
+			product.name = "cotton socks";
+
+			console.log(product, product.name, product.price);
+
+			product.newProperty = true;
+
+			console.log(product, product.name, product.price);
+
+			delete product.newProperty;
+
+			console.log(product, product.name, product.price);
+
+			const product2 = {
+				name: "shirt",
+				"delivery-time": "1 day",
+				["delivery" + "time"]: "1 day",
+				rating: {
+					stars: 4.5,
+					count: 87
+				},
+				function() {
+					console.log("Function inside object");
+				}
+			};
+
+			// Function inside object = method
+
+			console.log(product2.name, product2["name"], product2["delivery-time"], console.log(product2.rating.count));
+
+			product2.function();
+
+			console.log(typeof Math.random);
+
+			const jsonString = JSON.stringify(product);
+
+			console.log(jsonString);
+
+			console.log(JSON.parse(jsonString));
+		</script>
+	</body>
+</html>
