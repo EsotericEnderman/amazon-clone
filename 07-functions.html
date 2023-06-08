@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Functions</title>
+	</head>
+	<body>
+		<script>
+			/**
+			 * @returns {void}
+			 */
+			function f() {
+				console.log("Hello");
+				console.log(2 + 2);
+			}
+
+			f();
+
+			f();
+
+			f();
+
+			/**
+			 * @param {unknown} x
+			 * @returns {void}
+			 */
+			function g(x) {
+				console.log(x);
+			}
+
+			g(4);
+
+			const calculateTax = (cost, taxPercent = 0.1) => console.log(cost * taxPercent);
+
+			calculateTax(2000, 0.2);
+			calculateTax(5000);
+
+			/**
+			 * @param {string | undefined} name
+			 * @returns {void}
+			 */
+			const greet = (name) => console.log(name ? `Hello, ${name}!` : "Hi there!");
+
+			greet("Slqmy");
+			greet("Simon");
+			greet("rolyPolyVole");
+			greet("John Pork");
+			greet();
+
+			/**
+			 * @param {number}
+			 * @returns {number}
+			 */
+			const convertToFahrenheit = (celsius) => celsius * (9 / 5) + 32;
+
+			/**
+			 * @param {number} fahrenheit
+			 * @returns {number}
+			 */
+			const convertToCelsius = (fahrenheit) => (fahrenheit - 32) * (5 / 9);
+
+			/**
+			 * @param {number} degrees
+			 * @param {string} unit
+			 * @returns {string}
+			 */
+			const convertTemperature = (degrees, unit) =>
+				unit.toUpperCase() === "C" ? `${convertToFahrenheit(degrees)}F` : `${convertToCelsius(degrees)}C`;
+
+			console.log(convertTemperature(0, "C"));
+		</script>
+	</body>
+</html>
