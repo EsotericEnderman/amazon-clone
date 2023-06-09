@@ -8,7 +8,6 @@
 	</head>
 	<body>
 		<p>Cart Quantity</p>
-		<button onclick="console.log(`Cart quantity: ${cartQuantity}`)">Show quantity</button>
 		<button onclick="updateCart(-3)">-3</button>
 		<button onclick="updateCart(-2)">-2</button>
 		<button onclick="updateCart(-1)">Remove from cart</button>
@@ -17,7 +16,10 @@
 		<button onclick="updateCart(3)">+3</button>
 		<button onclick="updateCart(4)">+4</button>
 		<button onclick="updateCart(5)">+5</button>
-		<button onclick="cartQuantity = 0; console.log(`Cart was reset.`)">Reset Cart</button>
+		<button onclick="cartQuantity = 0; document.querySelector('p.js-cart-quantity').innerHTML = `Cart Quantity: 0`;">
+			Reset Cart
+		</button>
+		<p class="js-cart-quantity">Cart Quantity: 0</p>
 		<script>
 			let cartQuantity = 0;
 
@@ -27,17 +29,15 @@
 			 */
 			const updateCart = (number) => {
 				if (cartQuantity + number > 10) {
-					console.log(`Cart quantity: ${cartQuantity}`);
 					return alert("The cart is full!");
 				}
 
 				if (cartQuantity + number < 0) {
-					console.log(`Cart quantity: ${cartQuantity}`);
 					return alert("Not enough items in the cart");
 				}
 
 				cartQuantity = cartQuantity + number;
-				console.log(`Cart quantity: ${cartQuantity}`);
+				document.querySelector("p.js-cart-quantity").innerHTML = `Cart Quantity: ${cartQuantity}`;
 			};
 		</script>
 	</body>
