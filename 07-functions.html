@@ -70,6 +70,13 @@
 				unit.toUpperCase() === "C" ? `${convertToFahrenheit(degrees)}F` : `${convertToCelsius(degrees)}C`;
 
 			console.log(convertTemperature(0, "C"));
+
+			const func = (parameter = "default") => console.log(parameter);
+
+			func(); // => "default";
+			func(undefined); // => "default";
+
+			func(null); // => "null";
 		</script>
 	</body>
 </html>
