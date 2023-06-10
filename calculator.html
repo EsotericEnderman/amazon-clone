@@ -5,51 +5,38 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Calculator</title>
+		<link rel="stylesheet" href="styles/calculator.css" />
 	</head>
 	<body>
 		<p class="js-calculation">Press any button to begin</p>
 		<p>
-			<button onclick="updateCalculation('1')">1</button>
-			<button onclick="updateCalculation('2')">2</button>
-			<button onclick="updateCalculation('3')">3</button>
-			<button onclick="updateCalculation(' + ')">+</button>
+			<button onclick="updateCalculation('1')" class="calculator-button">1</button>
+			<button onclick="updateCalculation('2')" class="calculator-button">2</button>
+			<button onclick="updateCalculation('3')" class="calculator-button">3</button>
+			<button onclick="updateCalculation(' + ')" class="operator-button">+</button>
 		</p>
 		<p>
-			<button onclick="updateCalculation('4')">4</button>
-			<button onclick="updateCalculation('5')">5</button>
-			<button onclick="updateCalculation('6')">6</button>
-			<button onclick="updateCalculation(' - ')">-</button>
+			<button onclick="updateCalculation('4')" class="calculator-button">4</button>
+			<button onclick="updateCalculation('5')" class="calculator-button">5</button>
+			<button onclick="updateCalculation('6')" class="calculator-button">6</button>
+			<button onclick="updateCalculation(' - ')" class="operator-button">-</button>
 		</p>
 		<p>
-			<button onclick="updateCalculation('7')">7</button>
-			<button onclick="updateCalculation('8')">8</button>
-			<button onclick="updateCalculation('9')">9</button>
-			<button onclick="updateCalculation(' * ')">*</button>
+			<button onclick="updateCalculation('7')" class="calculator-button">7</button>
+			<button onclick="updateCalculation('8')" class="calculator-button">8</button>
+			<button onclick="updateCalculation('9')" class="calculator-button">9</button>
+			<button onclick="updateCalculation(' * ')" class="operator-button">*</button>
 		</p>
 
 		<p>
-			<button onclick="updateCalculation('0')">0</button>
-			<button onclick="updateCalculation('.')">.</button>
-			<button onclick="calculation=eval(calculation);updateCalculation()">=</button>
-			<button onclick="updateCalculation(' / ')">/</button>
+			<button onclick="updateCalculation('0')" class="calculator-button">0</button>
+			<button onclick="updateCalculation('.')" class="calculator-button">.</button>
+			<button onclick="calculation=eval(calculation);updateCalculation()" class="calculator-button">=</button>
+			<button onclick="updateCalculation(' / ')" class="operator-button">/</button>
 		</p>
 
-		<button onclick="calculation='';updateCalculation()">Clear</button>
+		<button onclick="calculation='';updateCalculation()" class="clear-button">Clear</button>
 
-		<script>
-			let calculation = localStorage.getItem("calculation") ?? "";
-
-			/**
-			 * @param {string} input
-			 * @returns {void}
-			 */
-			const updateCalculation = (input) => {
-				input && (calculation += input);
-				calculation ? localStorage.setItem("calculation", calculation) : localStorage.removeItem("calculation");
-				document.querySelector("p.js-calculation").innerHTML = calculation || "Press any button to begin";
-			};
-
-			updateCalculation();
-		</script>
+		<script src="scripts/calculator.js"></script>
 	</body>
 </html>
