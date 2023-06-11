@@ -13,11 +13,13 @@
 		"linebreak",
 		"nodenext",
 		"nonconstructor",
+		"nums",
 		"paren",
 		"parens",
 		"stroustrup",
 		"supersimpledev",
 		"togglable",
-		"vars"
+		"vars",
+		"youtube"
 	]
 }
