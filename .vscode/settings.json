@@ -2,7 +2,11 @@
 	"cSpell.words": [
 		"camelcase",
 		"cond",
+		"csshtml",
 		"Elem",
+		"htmlcss",
+		"htmlcssjs",
+		"htmljs",
 		"iife",
 		"isnan",
 		"keydowns",
@@ -12,6 +16,8 @@
 		"paren",
 		"parens",
 		"stroustrup",
+		"supersimpledev",
+		"togglable",
 		"vars"
 	]
 }
