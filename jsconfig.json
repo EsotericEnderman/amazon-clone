@@ -4,12 +4,8 @@
 		"module": "ESNext",
 		"moduleResolution": "nodenext",
 		"checkJs": true,
-		"baseUrl": "dist",
-		"paths": {
-			"@commands/*": ["commands/*"]
-		},
 		"allowJs": true
 	},
-	"exclude": ["node_modules"],
-	"include": ["dist"]
+	"include": ["scripts", "*.html"],
+	"exclude": ["node_modules"]
 }
