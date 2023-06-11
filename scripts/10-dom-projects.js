@@ -21,6 +21,7 @@
 const subscribe = () => {
 	const button = document.querySelector("button.js-subscribe-button");
 
+	// @ts-ignore
 	if (button.innerText === "Subscribe") {
 		button.innerHTML = "Subscribed";
 		button.classList.add("is-subscribed");
@@ -31,8 +32,12 @@ const subscribe = () => {
 };
 
 const calculateTotal = () => {
+	/**
+	 * @constant {InputElement} inputElement
+	 */
 	const inputElement = document.querySelector("input.js-cost-input");
 
+	// @ts-ignore
 	let cost = Number(inputElement.value) * 100;
 
 	const output = document.querySelector("p.js-total-cost");
@@ -52,6 +57,11 @@ const calculateTotal = () => {
 	}
 };
 
+/**
+ *
+ * @param {KeyboardEvent} event
+ * @returns {void}
+ */
 const handleCostKeydown = (event) => event.key === "Enter" && calculateTotal();
 
 // ! NOTE: clicks, keydowns = events.
@@ -62,14 +72,19 @@ const handleCostKeydown = (event) => event.key === "Enter" && calculateTotal();
 // console.log(button.classList.contains("js-button"));
 
 const buttonToggle = (buttonName) => {
-	const button = document.querySelector(`button.js-switch-button-${buttonName}`);
+	const button = document.querySelector(
+		`button.js-switch-button-${buttonName}`,
+	);
 
 	const buttons = document.querySelectorAll(`button.switch-button`);
 
-	for (const button of buttons) {
-		button.classList.remove("switch-button-on");
+	const buttonClass = "switch-button-on";
+
+	for (const togglableButton of buttons) {
+		togglableButton.classList.remove(buttonClass);
 	}
 
-	if (button.classList.contains("switch-button-on")) button.classList.remove("switch-button-on");
-	else button.classList.add("switch-button-on");
+	if (button.classList.contains(buttonClass)) {
+		button.classList.remove(buttonClass);
+	} else button.classList.add(buttonClass);
 };

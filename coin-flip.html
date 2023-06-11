@@ -6,11 +6,12 @@
 		<title>Coin Flip Game</title>
 	</head>
 	<body>
-		<button onclick="playGame()">Heads</button> <button onclick="playGame()">Tails</button>
+		<button onclick="playGame()">Heads</button>
+		<button onclick="playGame()">Tails</button>
 		<script>
 			const stats = JSON.parse(localStorage.getItem("stats")) ?? {
 				wins: 0,
-				losses: 0
+				losses: 0,
 			};
 
 			const playGame = () => {

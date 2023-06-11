@@ -10,7 +10,7 @@
 		<script>
 			const product = {
 				name: "socks",
-				price: 1090
+				price: 1090,
 			};
 
 			console.log(product, product.name, product.price);
@@ -28,21 +28,28 @@
 			console.log(product, product.name, product.price);
 
 			const product2 = {
-				name: "shirt",
+				"name": "shirt",
 				"delivery-time": "1 day",
+				// eslint-disable-next-line no-useless-concat
 				["delivery" + "time"]: "1 day",
-				rating: {
+				"rating": {
 					stars: 4.5,
-					count: 87
+					count: 87,
 				},
-				function() {
+				"function"() {
 					console.log("Function inside object");
-				}
+				},
 			};
 
 			// Function inside object = method/
 
-			console.log(product2.name, product2["name"], product2["delivery-time"], console.log(product2.rating.count));
+			console.log(
+				product2.name,
+				// eslint-disable-next-line dot-notation
+				product2["name"],
+				product2["delivery-time"],
+				console.log(product2.rating.count),
+			);
 
 			product2.function();
 
@@ -82,7 +89,7 @@
 			// => True because they have the same reference.
 
 			const object3 = {
-				message: "Goodbye"
+				message: "Goodbye",
 			};
 
 			console.log(object3 === object1);
@@ -90,7 +97,7 @@
 
 			const object4 = {
 				message: "Goodbye",
-				price: 799
+				price: 799,
 			};
 
 			// Destructuring
@@ -109,14 +116,14 @@
 				// Shorthand method syntax.
 				method() {
 					console.log("method");
-				}
+				},
 			};
 
 			object5.method();
 
 			const product3 = {
 				name: "basketball",
-				price: 2095
+				price: 2095,
 			};
 
 			console.log(product3);
@@ -133,13 +140,14 @@
 
 			console.log(comparePrice(product3, product));
 
-			const isSameProduct = (p1, p2) => p1.name === p2.name && p1.price === p2.price;
+			const isSameProduct = (p1, p2) =>
+				p1.name === p2.name && p1.price === p2.price;
 
 			console.log(isSameProduct(product3, product));
 
 			const product4 = {
 				name: "basketball",
-				price: 2595
+				price: 2595,
 			};
 
 			console.log(isSameProduct(product3, product4));

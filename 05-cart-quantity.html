@@ -16,7 +16,9 @@
 		<button onclick="updateCart(3)">+3</button>
 		<button onclick="updateCart(4)">+4</button>
 		<button onclick="updateCart(5)">+5</button>
-		<button onclick="cartQuantity = 0; document.querySelector('p.js-cart-quantity').innerHTML = `Cart Quantity: 0`;">
+		<button
+			onclick="cartQuantity = 0; document.querySelector('p.js-cart-quantity').innerHTML = `Cart Quantity: 0`;"
+		>
 			Reset Cart
 		</button>
 		<p class="js-cart-quantity">Cart Quantity: 0</p>
@@ -36,8 +38,10 @@
 					return alert("Not enough items in the cart");
 				}
 
-				cartQuantity = cartQuantity + number;
-				document.querySelector("p.js-cart-quantity").innerHTML = `Cart Quantity: ${cartQuantity}`;
+				cartQuantity += number;
+				document.querySelector(
+					"p.js-cart-quantity",
+				).innerHTML = `Cart Quantity: ${cartQuantity}`;
 			};
 		</script>
 	</body>

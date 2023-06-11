@@ -16,7 +16,11 @@
 		<p>Orders under $40 = +$10 shipping.</p>
 		<p>Orders over $40 = FREE shipping.</p>
 		<!-- Input = void element -->
-		<input placeholder="Cost of order" class="js-cost-input" onkeydown="handleCostKeydown(event)" />
+		<input
+			placeholder="Cost of order"
+			class="js-cost-input"
+			onkeydown="handleCostKeydown(event)"
+		/>
 		<button onclick="calculateTotal()">Calculate</button>
 		<p class="js-total-cost"></p>
 		<script>
@@ -41,7 +45,8 @@
 			const subscribe = () => {
 				const button = document.querySelector("button.js-subscribe-button");
 
-				button.innerHTML = button.innerText === "Subscribe" ? "Subscribed" : "Subscribe";
+				button.innerHTML =
+					button.innerText === "Subscribe" ? "Subscribed" : "Subscribe";
 			};
 
 			const calculateTotal = () => {
@@ -56,7 +61,8 @@
 				document.querySelector("p.js-total-cost").innerHTML = `$${cost / 100}`;
 			};
 
-			const handleCostKeydown = (event) => event.key === "Enter" && calculateTotal();
+			const handleCostKeydown = (event) =>
+				event.key === "Enter" && calculateTotal();
 
 			// ! NOTE: clicks, keydowns = events.
 			// ! NOTE: onclick, onkeydown = event listener.

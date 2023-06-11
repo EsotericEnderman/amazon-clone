@@ -7,7 +7,12 @@
 		<title>DOM</title>
 	</head>
 	<body>
-		<button class="js-9b" onclick="document.querySelector('button.js-9b').innerHTML = '9b done!'">9b</button>
+		<button
+			class="js-9b"
+			onclick="document.querySelector('button.js-9b').innerHTML = '9b done!'"
+		>
+			9b
+		</button>
 
 		<button>9a</button>
 
@@ -18,17 +23,29 @@
 
 		<p>Heads or Tails?</p>
 
-		<button class="js-heads" onclick="document.querySelector('p.js-choice').innerHTML = 'You chose: heads'">
+		<button
+			class="js-heads"
+			onclick="document.querySelector('p.js-choice').innerHTML = 'You chose: heads'"
+		>
 			Heads
 		</button>
-		<button class="js-tails" onclick="document.querySelector('p.js-choice').innerHTML = 'You chose: tails'">
+		<button
+			class="js-tails"
+			onclick="document.querySelector('p.js-choice').innerHTML = 'You chose: tails'"
+		>
 			Tails
 		</button>
 
 		<p class="js-choice"></p>
 
-		<input class="js-name-input" placeholder="Name" onkeydown="handleNameInputKeyDown(event)" />
-		<button class="js-submit-button" onclick="updateNameElement()">Submit</button>
+		<input
+			class="js-name-input"
+			placeholder="Name"
+			onkeydown="handleNameInputKeyDown(event)"
+		/>
+		<button class="js-submit-button" onclick="updateNameElement()">
+			Submit
+		</button>
 
 		<p class="js-name-output"></p>
 
@@ -81,11 +98,14 @@
 			console.log(document.querySelector("button"));
 
 			const updateNameElement = () =>
-				(document.querySelector("p.js-name-output").innerHTML = `Your name is: ${
+				(document.querySelector(
+					"p.js-name-output",
+				).innerHTML = `Your name is: ${
 					document.querySelector("input.js-name-input").value
 				}`);
 
-			const handleNameInputKeyDown = (event) => event.key === "Enter" && updateNameElement();
+			const handleNameInputKeyDown = (event) =>
+				event.key === "Enter" && updateNameElement();
 		</script>
 	</body>
 </html>
