@@ -25,6 +25,7 @@
 		"no-div-regex": "error",
 		"for-direction": "error",
 		"camelcase": "error",
+		"no-mixed-spaces-and-tabs": "off",
 		"no-const-assign": "error",
 		"no-case-declarations": "off",
 		"no-dupe-args": "error",
