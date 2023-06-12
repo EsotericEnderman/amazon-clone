@@ -213,6 +213,66 @@
 			};
 
 			console.log(countWords(["apple", "apple", "grape", "apple"]));
+
+			// Arrays are references.
+			const array1 = [1, 2, 3];
+			const array2 = array1;
+
+			array2.push(4);
+
+			console.log(array1, array2);
+
+			const array3 = array1.slice();
+
+			array3.push(5);
+
+			console.log(array1, array2, array3);
+
+			const array4 = [1, 2, 3];
+
+			const [firstValue, secondValue] = array4;
+
+			console.log(firstValue, secondValue);
+
+			// Break = exit a loop early.
+			// Continue = continue a loop early / skip a part of the loop.
+
+			// eslint-disable-next-line no-shadow
+			for (let i = 1; i <= 10; i++) {
+				if (!(i % 3)) continue;
+
+				console.log(i);
+
+				if (i === 8) break;
+			}
+
+			// ALWAYS DO INCREMENT STEP MANUALLY.
+
+			let o = 1;
+			while (o <= 10) {
+				if (!(o % 3)) {
+					o++;
+					continue;
+				}
+				console.log(o);
+				o++;
+			}
+
+			const nums = [1, 1, 3];
+
+			const doubleArray = (arr) => {
+				const numsDoubled = [];
+
+				for (const number of arr) {
+					if (!number) return numsDoubled;
+					numsDoubled.push(number * 2);
+				}
+
+				return numsDoubled;
+			};
+
+			console.log(doubleArray([1, 1, 3]));
+			console.log(doubleArray([2, 2, 155, 0, 5]));
 		</script>
 	</body>
 </html>
