@@ -1,0 +1,155 @@
+<!-- eslint-disable prefer-arrow-callback -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>App</title>
+		<style>
+			p.add-to-cart-message {
+				transition: opacity 0.25s;
+				opacity: 0;
+			}
+
+			/* ONE WAY TRANSITION: Override the transition with 0s on the second selector */
+
+			p.add-to-cart-message-opaque {
+				opacity: 1;
+				transition: opacity 0s;
+			}
+		</style>
+	</head>
+	<body>
+		<button onclick="handleButtonClick()" class="js-start-finished-button">
+			Start</button
+		><button onclick="handleAddToCartButtonClick()">Add To Cart</button>
+		<p class="js-add-to-cart-message add-to-cart-message">Added</p>
+		<button onclick="messages++;">Add</button
+		><button onclick="messages && messages--;">Remove</button>
+		<script>
+			// Hoisting. Doesn't work when saving function to variable.
+			greeting();
+			function greeting() {
+				console.log("Hello! #1");
+			}
+			greeting();
+
+			const num = 2;
+			// Anonymous function. (function without a name)
+			const function1 = function () {
+				console.log("Hello! #2");
+			};
+
+			console.log(function1, typeof function1);
+			function1();
+
+			const object1 = {
+				num: 2,
+				// Method. (function saved within an object)
+				f() {
+					console.log("Hello! #3");
+				},
+				// Method shorthand syntax ^
+			};
+
+			object1.f();
+
+			function display(param) {
+				console.log(param);
+			}
+
+			display(2);
+
+			function run(f) {
+				f();
+			}
+
+			// Passing a function into another function. Callback function.
+			run(function () {
+				console.log("Hello! #4");
+			});
+
+			// 1000ms = 1s.
+			setTimeout(function () {
+				console.log("Timeout! #1");
+				console.log("Timeout! #2");
+			}, 3000);
+
+			// setTimeout is asynchronous.
+			// Synchronous: waits for the code to be finished before moving on to the next line.
+
+			console.log("Next Line #1");
+
+			setInterval(function () {
+				console.log("Interval!");
+			}, 3000);
+
+			// setInterval is asynchronous.
+
+			console.log("Next Line #2");
+
+			// Preferred loop for looping over an array.
+
+			// Continue doesn't work in forEach, but you can use return instead.
+
+			// Break doesn't work in forEach. Better to use a normal loop.
+			["Make Dinner", "Wash Dishes", "watch YouTube"].forEach(
+				(value, index, array) => {
+					if (value === "Wash Dishes") return;
+
+					console.log(value, index, array);
+				},
+			);
+
+			const add = () => console.log(2 + 3);
+
+			add();
+			add();
+
+			const runTwice = (f) => {
+				f();
+				f();
+			};
+
+			runTwice(() => console.log("12b"));
+			runTwice(add);
+
+			const handleButtonClick = () => {
+				const buttonElement = document.querySelector(
+					"button.js-start-finished-button",
+				);
+
+				buttonElement.innerHTML = "Loading...";
+
+				setTimeout(() => (buttonElement.innerHTML = "Finished!"), 1000);
+			};
+
+			let currentTimeout;
+
+			const handleAddToCartButtonClick = () => {
+				const paragraphElement = document.querySelector(
+					"p.js-add-to-cart-message",
+				);
+
+				paragraphElement.classList.add("add-to-cart-message-opaque");
+
+				clearTimeout(currentTimeout);
+				currentTimeout = setTimeout(
+					() => paragraphElement.classList.remove("add-to-cart-message-opaque"),
+					2000,
+				);
+			};
+
+			let messages = 0;
+
+			setInterval(() => {
+				if (messages) {
+					document.title = `(${messages}) New message${
+						messages === 1 ? "" : "s"
+					}`;
+					setTimeout(() => (document.title = "App"), 1000);
+				}
+			}, 2000);
+		</script>
+	</body>
+</html>
