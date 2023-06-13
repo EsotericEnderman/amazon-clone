@@ -30,23 +30,34 @@ const handleButtonClick2 = () => {
 	}
 };
 
-const toDoList3 = [];
+const toDoList3 = JSON.parse(localStorage.getItem("toDoList")) ?? [];
 const itemsDiv = document.querySelector("div.js-items-3");
 
 const renderToDoList = () => {
+	localStorage.setItem("toDoList", JSON.stringify(toDoList3));
+
 	itemsDiv.innerHTML = "";
 
 	toDoList3.forEach((item, index) => {
 		console.log(itemsDiv.innerHTML, index, toDoList3);
 
+		// Multi-line strings.
 		itemsDiv.innerHTML += `
-		<div class="to-do-row">
 			<div class="item-name">${item.item}</div>
 			<div class="item-date">${item.date}</div>
-			<button onclick="toDoList3.splice(${index}, 1);renderToDoList();" class="delete-button">Delete</button>
-		</div>`;
+
+			<button onclick="
+
+			toDoList3.splice(${index}, 1);
+
+			renderToDoList();"
+
+			class="delete-button">Delete</button>
+		`;
 	});
 };
+
+renderToDoList();
 
 const handleButtonClick3 = () => {
 	const item = document.querySelector("input.js-item-input-3");
