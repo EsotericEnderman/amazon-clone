@@ -1,11 +1,14 @@
 // ! Note: Logical operators have a lower priority than comparison operators and math operators.
 
-const score = JSON.parse(localStorage.getItem("score")) ?? {
+// @ts-ignore
+// eslint-disable-next-line prefer-const
+let score = JSON.parse(localStorage.getItem("score")) ?? {
 	wins: 0,
 	losses: 0,
 	ties: 0,
 };
 
+// @ts-ignore
 const updateScoreElement = () => {
 	document.querySelector(
 		"p.js-score",
@@ -15,6 +18,7 @@ const updateScoreElement = () => {
 /**
  * @returns {"rock" | "paper" | "scissors"}
  */
+// @ts-ignore
 const pickComputerMove = () => {
 	const randomNumber = Math.random();
 
@@ -30,6 +34,7 @@ const pickComputerMove = () => {
  * @returns {void}
  */
 // eslint-disable-next-line no-unused-vars
+// @ts-ignore
 const playGame = (playerMove) => {
 	const computerMove = pickComputerMove();
 
