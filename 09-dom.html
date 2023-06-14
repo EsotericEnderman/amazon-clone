@@ -9,8 +9,7 @@
 	<body>
 		<button
 			class="js-9b"
-			onclick="document.querySelector('button.js-9b').innerHTML = '9b done!'"
-		>
+			onclick="document.querySelector('button.js-9b').innerHTML = '9b done!'">
 			9b
 		</button>
 
@@ -25,14 +24,12 @@
 
 		<button
 			class="js-heads"
-			onclick="document.querySelector('p.js-choice').innerHTML = 'You chose: heads'"
-		>
+			onclick="document.querySelector('p.js-choice').innerHTML = 'You chose: heads'">
 			Heads
 		</button>
 		<button
 			class="js-tails"
-			onclick="document.querySelector('p.js-choice').innerHTML = 'You chose: tails'"
-		>
+			onclick="document.querySelector('p.js-choice').innerHTML = 'You chose: tails'">
 			Tails
 		</button>
 
@@ -41,8 +38,7 @@
 		<input
 			class="js-name-input"
 			placeholder="Name"
-			onkeydown="handleNameInputKeyDown(event)"
-		/>
+			onkeydown="handleNameInputKeyDown(event)" />
 		<button class="js-submit-button" onclick="updateNameElement()">
 			Submit
 		</button>
@@ -58,8 +54,7 @@
 			event.key.length === 1 && (document.querySelector('p.js-text-output').innerHTML+=event.key);
 
 			event.key === 'Backspace' && (document.querySelector('p.js-text-output').innerHTML = text.slice(0, -1))
-			"
-		/>
+			" />
 
 		<p class="js-text-output"></p>
 
