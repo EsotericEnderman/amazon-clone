@@ -34,11 +34,21 @@ p.score {
 }
 
 button.reset-score-button,
-button.auto-play-button {
+button.auto-play-button,
+button.yes-button,
+button.no-button {
 	margin-right: 10px;
 	background-color: white;
 	border: none;
 	font-size: 15px;
 	padding: 8px 15px;
 	cursor: pointer;
+}
+
+p.reset-score-confirmation-message {
+	display: inline-block;
+}
+
+div.js-confirmation-container {
+	height: 50.22px;
 }

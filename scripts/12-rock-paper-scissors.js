@@ -73,6 +73,7 @@ const playGame = (playerMove) => {
 
 let intervalID;
 
+// Personal preference if arrow function or not.
 const autoPlay = () => {
 	const autoPlayButton = document.querySelector("button.auto-play-button");
 
@@ -87,3 +88,77 @@ const autoPlay = () => {
 		autoPlayButton.innerHTML = "Auto Play";
 	}
 };
+
+const resetScore = () => {
+	score = {wins: 0, losses: 0, ties: 0};
+	updateScoreElement();
+	localStorage.removeItem("score");
+};
+
+// Better than onclick attribute.
+const rockButton = document.querySelector("button.js-rock-button");
+
+rockButton.addEventListener("click", () => playGame("rock"));
+
+const paperButton = document.querySelector("button.js-paper-button");
+
+paperButton.addEventListener("click", () => playGame("paper"));
+
+const scissorsButton = document.querySelector("button.js-scissors-button");
+
+scissorsButton.addEventListener("click", () => playGame("scissors"));
+
+const confirmationContainerDiv = document.querySelector(
+	"div.js-confirmation-container",
+);
+
+const resetScoreConfirmationPopup = () => {
+	confirmationContainerDiv.innerHTML = `
+			<p class="reset-score-confirmation-message">
+				Are you sure you want to reset the score?
+			</p>
+
+			<button class="yes-button js-yes-button">Yes</button>
+			<button class="no-button js-no-button">No</button>
+			`;
+
+	const yesButton = document.querySelector("button.js-yes-button");
+	const noButton = document.querySelector("button.js-no-button");
+
+	yesButton.addEventListener("click", () => {
+		resetScore();
+		confirmationContainerDiv.innerHTML = "";
+	});
+
+	noButton.addEventListener("click", () => {
+		confirmationContainerDiv.innerHTML = "";
+	});
+};
+
+const resetScoreButton = document.querySelector("button.js-reset-score-button");
+
+resetScoreButton.addEventListener("click", resetScoreConfirmationPopup);
+
+const autoPlayButton = document.querySelector("button.js-auto-play-button");
+
+autoPlayButton.addEventListener("click", autoPlay);
+
+document.addEventListener("keydown", (event) => {
+	switch (event.key) {
+		case "r":
+			playGame("rock");
+			break;
+		case "p":
+			playGame("paper");
+			break;
+		case "s":
+			playGame("scissors");
+			break;
+		case "a":
+			autoPlay();
+			break;
+		case "Backspace":
+			resetScoreConfirmationPopup();
+			break;
+	}
+});
