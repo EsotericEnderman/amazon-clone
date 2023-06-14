@@ -1,0 +1,59 @@
+body {
+	font-family: Roboto, Arial, Helvetica, sans-serif;
+	/* Same colour as in the rock paper scissors project */
+	background-color: rgb(25, 25, 25);
+	color: white;
+	user-select: none;
+}
+
+h1.title {
+	display: inline-block;
+}
+
+img.icon {
+	height: 38.444px;
+}
+
+div.title-container,
+p.time,
+div.button-container {
+	/* Centre the elements on the screen */
+	text-align: center;
+}
+
+button.reset-button,
+button.go-button {
+	height: 45px;
+	width: 45px;
+	border-radius: 50%;
+	border: none;
+	box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.85);
+	transition: box-shadow 0.15s;
+}
+
+button.reset-button:active,
+button.go-button:active {
+	box-shadow: none;
+}
+
+div.credits-container-container {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+}
+
+div.credits-container {
+	position: relative;
+	display: flex;
+}
+
+a.credits {
+	color: white;
+	font-size: 10px;
+	display: inline-block;
+}
+
+img.credits-icon {
+	margin-right: 6px;
+	height: 12px;
+}
