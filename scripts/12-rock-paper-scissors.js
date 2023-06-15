@@ -1,14 +1,14 @@
+// @ts-nocheck
+/* eslint-disable no-use-before-define */
+/* eslint-disable func-style */
 // ! Note: Logical operators have a lower priority than comparison operators and math operators.
 
-// @ts-ignore
-// eslint-disable-next-line prefer-const
 let score = JSON.parse(localStorage.getItem("score")) ?? {
 	wins: 0,
 	losses: 0,
 	ties: 0,
 };
 
-// @ts-ignore
 const updateScoreElement = () => {
 	document.querySelector(
 		"p.js-score",
@@ -20,7 +20,6 @@ updateScoreElement();
 /**
  * @returns {"rock" | "paper" | "scissors"}
  */
-// @ts-ignore
 const pickComputerMove = () => {
 	const randomNumber = Math.random();
 
@@ -35,8 +34,6 @@ const pickComputerMove = () => {
  * @param {"rock" | "paper" | "scissors"} playerMove
  * @returns {void}
  */
-// eslint-disable-next-line no-unused-vars
-// @ts-ignore
 const playGame = (playerMove) => {
 	const computerMove = pickComputerMove();
 
@@ -60,34 +57,24 @@ const playGame = (playerMove) => {
 	updateScoreElement();
 
 	document.querySelector("p.js-result").innerHTML = `${result}.`;
-	document.querySelector("p.js-moves-chosen").innerHTML = `You <img alt="${
-		playerMove[0].toUpperCase
-	}${playerMove.slice(
+
+	document.querySelector("p.you-computer").innerHTML =
+		"You &centerdot; Computer";
+
+	document.querySelector("p.js-moves-chosen").innerHTML = `
+	<div class="result-image-container">
+		<img alt="${playerMove[0].toUpperCase}${playerMove.slice(
 		1,
-	)} Emoji" src="images/${playerMove}-emoji.png" class="move-icon" /><img alt="${
-		computerMove[0].toUpperCase
-	}${computerMove.slice(
+	)} Emoji" src="images/${playerMove}-emoji.png" class="move-icon" />
+
+		<img alt="${computerMove[0].toUpperCase}${computerMove.slice(
 		1,
-	)} Emoji" src="images/${computerMove}-emoji.png" class="move-icon" /> Computer`;
+	)} Emoji" src="images/${computerMove}-emoji.png" class="move-icon" />
+	</div>
+	`;
 };
 
 let intervalID;
-
-// Personal preference if arrow function or not.
-const autoPlay = () => {
-	const autoPlayButton = document.querySelector("button.auto-play-button");
-
-	if (autoPlayButton.innerHTML === "Auto Play") {
-		autoPlayButton.innerHTML = "Stop Auto Play";
-
-		intervalID = setInterval(() => playGame(pickComputerMove()), 1000);
-	} else {
-		// Stops a setInterval function.
-		clearInterval(intervalID);
-
-		autoPlayButton.innerHTML = "Auto Play";
-	}
-};
 
 const resetScore = () => {
 	score = {wins: 0, losses: 0, ties: 0};
@@ -112,14 +99,18 @@ const confirmationContainerDiv = document.querySelector(
 	"div.js-confirmation-container",
 );
 
+const resetConfirmation = () => {
+	confirmationContainerDiv.innerHTML = "";
+};
+
 const resetScoreConfirmationPopup = () => {
 	confirmationContainerDiv.innerHTML = `
 			<p class="reset-score-confirmation-message">
 				Are you sure you want to reset the score?
 			</p>
 
-			<button class="yes-button js-yes-button">Yes</button>
-			<button class="no-button js-no-button">No</button>
+			<button class="yes-button js-yes-button">Yes (Y)</button>
+			<button class="no-button js-no-button">No (N)</button>
 			`;
 
 	const yesButton = document.querySelector("button.js-yes-button");
@@ -127,11 +118,11 @@ const resetScoreConfirmationPopup = () => {
 
 	yesButton.addEventListener("click", () => {
 		resetScore();
-		confirmationContainerDiv.innerHTML = "";
+		resetConfirmation();
 	});
 
 	noButton.addEventListener("click", () => {
-		confirmationContainerDiv.innerHTML = "";
+		resetConfirmation();
 	});
 };
 
@@ -160,5 +151,26 @@ document.addEventListener("keydown", (event) => {
 		case "Backspace":
 			resetScoreConfirmationPopup();
 			break;
+		case "y":
+			document.querySelector("button.js-yes-button") &&
+				(resetScore() || resetConfirmation());
+			break;
+		case "n":
+			document.querySelector("button.js-no-button") && resetConfirmation();
+			break;
 	}
 });
+
+// Personal preference if arrow function or not.
+function autoPlay() {
+	if (autoPlayButton.innerHTML.trim() === "Auto Play (A)") {
+		autoPlayButton.innerHTML = "Stop Auto Play (A)";
+
+		intervalID = setInterval(() => playGame(pickComputerMove()), 1000);
+	} else {
+		// Stops a setInterval function.
+		clearInterval(intervalID);
+
+		autoPlayButton.innerHTML = "Auto Play (A)";
+	}
+}
