@@ -2,11 +2,28 @@ body {
 	background-color: rgb(25, 25, 25);
 	color: white;
 	font-family: Arial, Helvetica, sans-serif;
+	user-select: none;
+}
+
+div.title-container {
+	text-align: center;
 }
 
 p.title {
 	font-size: 30px;
 	font-weight: bold;
+	text-align: center;
+	height: 35px;
+	display: inline-block;
+}
+
+img.icon {
+	height: 35px;
+}
+
+div.button-container {
+	display: flex;
+	justify-content: center;
 }
 
 img.move-icon {
@@ -23,14 +40,25 @@ button.move-button {
 	cursor: pointer;
 }
 
+div.result-image-container,
+p.you-computer {
+	text-align: center;
+}
+
 p.result {
 	font-size: 25px;
 	font-weight: bold;
 	margin-top: 50px;
+	text-align: center;
 }
 
 p.score {
 	margin-top: 60px;
+	text-align: center;
+}
+
+div.button-wrapper {
+	text-align: center;
 }
 
 button.reset-score-button,
@@ -51,4 +79,15 @@ p.reset-score-confirmation-message {
 
 div.js-confirmation-container {
 	height: 50.22px;
+	text-align: center;
+}
+
+p.info {
+	text-align: center;
+}
+
+div.keybind-list-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
