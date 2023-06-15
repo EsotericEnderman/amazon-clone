@@ -21,25 +21,55 @@ div.button-container {
 	text-align: center;
 }
 
-button.reset-button,
-button.go-button {
+div.button-container {
+	display: flex;
+	justify-content: center;
+}
+
+button.go-button,
+button.add-lap-button,
+button.reset-button {
 	height: 45px;
 	width: 45px;
-	border-radius: 50%;
 	border: none;
 	box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.85);
 	transition: box-shadow 0.15s;
+	cursor: pointer;
+}
+
+button.go-button,
+button.reset-button {
+	border-radius: 50%;
+}
+
+button.add-lap-button {
+	margin: 0px 15px;
 }
 
 button.reset-button:active,
+button.add-lap-button:active,
 button.go-button:active {
 	box-shadow: none;
 }
 
-div.credits-container-container {
+div.laps-list-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+ol.laps-list {
+	padding: 0;
+}
+
+li.lap-item {
+	padding: 0;
+}
+
+div.credits-wrapper {
 	position: absolute;
-	bottom: 10px;
-	left: 10px;
+	top: 5px;
+	left: 5px;
 }
 
 div.credits-container {
