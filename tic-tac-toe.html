@@ -10,9 +10,16 @@
 		<link
 			href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
 			rel="stylesheet" />
+		<link rel="icon" type="image/png" href="images/tic-tac-toe-icon.png" />
 	</head>
 	<body>
-		<h1 class="title">Tic Tac Toe</h1>
+		<div class="title-container">
+			<h1 class="title">Tic Tac Toe</h1>
+			<img
+				src="images/tic-tac-toe-icon.png"
+				alt="Tic Tac Toe Icon"
+				class="icon" />
+		</div>
 
 		<div class="selection-wrapper">
 			<select class="difficulty-selection js-difficult-selector">
@@ -87,6 +94,19 @@
 		</div>
 
 		<p class="game-status js-game-status"></p>
+
+		<div class="credit-container">
+			<img
+				src="images/flaticon-icon.png"
+				alt="Flaticon Icon"
+				class="flaticon-icon" />
+			<a
+				href="https://www.flaticon.com/free-icons/tic-tac-toe"
+				title="tic tac toe icons"
+				class="credits">
+				Tic tac toe icons created by Vectoricons - Flaticon
+			</a>
+		</div>
 	</body>
 	<script src="scripts/tic-tac-toe.js"></script>
 </html>
