@@ -126,8 +126,6 @@ function pickBestMove() {
 		}
 	});
 
-	console.log(bestMove);
-
 	if (!bestMove) {
 		gameBoard.forEach((move, index) => {
 			if (
@@ -179,8 +177,6 @@ function pickBestMove() {
 		});
 	}
 
-	console.log(bestMove);
-
 	if (!bestMove && !gameBoard[4]) bestMove = 4;
 
 	if (!bestMove) {
@@ -190,8 +186,6 @@ function pickBestMove() {
 
 		if (!gameBoard[8]) bestMove = 8;
 	}
-
-	console.log(bestMove);
 
 	return bestMove ?? pickRandomMove();
 }
