@@ -5,8 +5,21 @@ body {
 	color: white;
 }
 
+div.title-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 h1.title {
 	text-align: center;
+	height: 38.5px;
+	margin-right: 5px;
+}
+
+img.icon {
+	height: 38.5px;
+	margin-left: 5px;
 }
 
 div.selection-wrapper {
@@ -105,4 +118,24 @@ img.move-icon {
 
 p.game-status {
 	text-align: center;
+}
+
+div.credit-container {
+	position: absolute;
+
+	display: flex;
+
+	top: 5px;
+	left: 5px;
+}
+
+img.flaticon-icon {
+	height: 20px;
+	margin-right: 2px;
+}
+
+a.credits {
+	color: white;
+	height: 20px;
+	margin-left: 2px;
 }
