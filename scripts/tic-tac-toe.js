@@ -74,6 +74,128 @@ function pickRandomMove() {
 		.index;
 }
 
+function pickBestMove() {
+	let bestMove;
+
+	gameBoard.forEach((move, index) => {
+		if (
+			!move &&
+			// Horizontal row check.
+			((index % 3 === 0 &&
+				gameBoard[index + 1] === computerPiece &&
+				gameBoard[index + 2] === computerPiece) ||
+				(index % 3 === 1 &&
+					gameBoard[index - 1] === computerPiece &&
+					gameBoard[index + 1] === computerPiece) ||
+				(index % 3 === 2 &&
+					gameBoard[index - 2] === computerPiece &&
+					gameBoard[index - 1] === computerPiece) ||
+				// Vertical row check.
+				(index < 3 &&
+					gameBoard[index + 3] === computerPiece &&
+					gameBoard[index + 6] === computerPiece) ||
+				(index > 2 &&
+					index < 6 &&
+					gameBoard[index - 3] === computerPiece &&
+					gameBoard[index + 3] === computerPiece) ||
+				(index > 5 &&
+					gameBoard[index - 6] === computerPiece &&
+					gameBoard[index - 3] === computerPiece) ||
+				// Diagonal up to down check.
+				(index === 0 &&
+					gameBoard[4] === computerPiece &&
+					gameBoard[8] === computerPiece) ||
+				(gameBoard[0] === computerPiece &&
+					index === 4 &&
+					gameBoard[8] === computerPiece) ||
+				(gameBoard[0] === computerPiece &&
+					gameBoard[4] === computerPiece &&
+					index === 8) ||
+				// Diagonal down to up check.
+				(index === 2 &&
+					gameBoard[4] === computerPiece &&
+					gameBoard[6] === computerPiece) ||
+				(gameBoard[2] === computerPiece &&
+					index === 4 &&
+					gameBoard[6] === computerPiece) ||
+				(gameBoard[2] === computerPiece &&
+					gameBoard[4] === computerPiece &&
+					index === 6))
+		) {
+			bestMove = index;
+		}
+	});
+
+	console.log(bestMove);
+
+	if (!bestMove) {
+		gameBoard.forEach((move, index) => {
+			if (
+				!move &&
+				// Horizontal row check.
+				((index % 3 === 0 &&
+					gameBoard[index + 1] === playerPiece &&
+					gameBoard[index + 2] === playerPiece) ||
+					(index % 3 === 1 &&
+						gameBoard[index - 1] === playerPiece &&
+						gameBoard[index + 1] === playerPiece) ||
+					(index % 3 === 2 &&
+						gameBoard[index - 2] === playerPiece &&
+						gameBoard[index - 1] === playerPiece) ||
+					// Vertical row check.
+					(index < 3 &&
+						gameBoard[index + 3] === playerPiece &&
+						gameBoard[index + 6] === playerPiece) ||
+					(index > 2 &&
+						index < 6 &&
+						gameBoard[index - 3] === playerPiece &&
+						gameBoard[index + 3] === playerPiece) ||
+					(index > 5 &&
+						gameBoard[index - 6] === playerPiece &&
+						gameBoard[index - 3] === playerPiece) ||
+					// Diagonal up to down check.
+					(index === 0 &&
+						gameBoard[4] === playerPiece &&
+						gameBoard[8] === playerPiece) ||
+					(gameBoard[0] === playerPiece &&
+						index === 4 &&
+						gameBoard[8] === playerPiece) ||
+					(gameBoard[0] === playerPiece &&
+						gameBoard[4] === playerPiece &&
+						index === 8) ||
+					// Diagonal down to up check.
+					(index === 2 &&
+						gameBoard[4] === playerPiece &&
+						gameBoard[6] === playerPiece) ||
+					(gameBoard[2] === playerPiece &&
+						index === 4 &&
+						gameBoard[6] === playerPiece) ||
+					(gameBoard[2] === playerPiece &&
+						gameBoard[4] === playerPiece &&
+						index === 6))
+			) {
+				bestMove = index;
+			}
+		});
+	}
+
+	console.log(bestMove);
+
+	if (!bestMove && !gameBoard[4]) bestMove = 4;
+
+	if (!bestMove) {
+		if (!gameBoard[0]) bestMove = 0;
+		if (!gameBoard[2] && gameBoard[5] !== playerPiece) bestMove = 2;
+		if (!gameBoard[6] && gameBoard[7] !== playerPiece) bestMove = 6;
+
+		if (!gameBoard[8]) bestMove = 8;
+	}
+
+	console.log(bestMove);
+
+	return bestMove ?? pickRandomMove();
+}
+
 function playMove(index, move) {
 	gameBoard[index] = move;
 	renderGameBoard();
@@ -81,17 +203,27 @@ function playMove(index, move) {
 
 const gameStatus = document.querySelector("p.js-game-status");
 
+const difficultySelection = document.querySelector(
+	"select.js-difficult-selector",
+);
+
 function playComputerMove() {
 	gameStatus.innerHTML = "Computer's move";
 
 	setTimeout(() => {
-		const moveIndex = pickRandomMove();
+		const moveIndex =
+			// @ts-ignore
+			difficultySelection.value === "Easy" ||
+			// @ts-ignore
+			(difficultySelection.value === "Medium" && Math.random() > 0.5)
+				? pickRandomMove()
+				: pickBestMove();
 		playMove(moveIndex, computerPiece);
 
 		const status = checkGameStatus();
 
 		if (!status) gameStatus.innerHTML = "Your move";
-	}, Math.random() * 2000 + 500);
+	}, Math.random() * 1000 + 1000);
 }
 
 const startGameButton = document.querySelector("button.js-start-game-button");
@@ -130,10 +262,6 @@ function checkGameStatus() {
 
 	return status;
 }
-
-const difficultySelection = document.querySelector(
-	"select.js-difficult-selector",
-);
 
 startGameButton.addEventListener("click", () => {
 	if (
