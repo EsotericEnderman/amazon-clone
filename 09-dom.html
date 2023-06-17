@@ -7,11 +7,7 @@
 		<title>DOM</title>
 	</head>
 	<body>
-		<button
-			class="js-9b"
-			onclick="document.querySelector('button.js-9b').innerHTML = '9b done!'">
-			9b
-		</button>
+		<button class="js-9b">9b</button>
 
 		<button>9a</button>
 
@@ -22,85 +18,20 @@
 
 		<p>Heads or Tails?</p>
 
-		<button
-			class="js-heads"
-			onclick="document.querySelector('p.js-choice').innerHTML = 'You chose: heads'">
-			Heads
-		</button>
-		<button
-			class="js-tails"
-			onclick="document.querySelector('p.js-choice').innerHTML = 'You chose: tails'">
-			Tails
-		</button>
+		<button class="js-heads">Heads</button>
+		<button class="js-tails">Tails</button>
 
 		<p class="js-choice"></p>
 
-		<input
-			class="js-name-input"
-			placeholder="Name"
-			onkeydown="handleNameInputKeyDown(event)" />
-		<button class="js-submit-button" onclick="updateNameElement()">
-			Submit
-		</button>
+		<input class="js-name-input" placeholder="Name" />
+		<button class="js-submit-button">Submit</button>
 
 		<p class="js-name-output"></p>
 
-		<input
-			class="js-text-input"
-			onkeyup="
-
-			const text = document.querySelector('p.js-text-output').innerHTML;
-
-			event.key.length === 1 && (document.querySelector('p.js-text-output').innerHTML+=event.key);
-
-			event.key === 'Backspace' && (document.querySelector('p.js-text-output').innerHTML = text.slice(0, -1))
-			" />
+		<input class="js-text-input" />
 
 		<p class="js-text-output"></p>
 
-		<script>
-			/*
-			document.body.innerHTML = "hello";
-			document.title = "Good job!";
-
-			console.log(document.title);
-
-			document.title = "Changed Title";
-
-			console.log(document.title);
-
-			console.log(document.body);
-
-			// Elements are converted into JS objects.
-
-			console.log(typeof document.body);
-
-			console.log(document.body.innerHTML);
-
-			document.body.innerHTML = "Changed HTML";
-			document.body.innerHTML = "<button>Good job!</button>";
-      */
-
-			console.log(document.querySelector("button").innerHTML);
-
-			// document.querySelector("button").innerHTML = "Changed Button";
-
-			// Usually ends with Element or "Elem".
-			const buttonElement = document.querySelector(".js-button");
-
-			console.log(buttonElement);
-
-			console.log(document.querySelector("button"));
-
-			const updateNameElement = () =>
-				(document.querySelector(
-					"p.js-name-output",
-				).innerHTML = `Your name is: ${
-					document.querySelector("input.js-name-input").value
-				}`);
-
-			const handleNameInputKeyDown = (event) =>
-				event.key === "Enter" && updateNameElement();
-		</script>
+		<script src="scripts/09-dom.js"></script>
 	</body>
 </html>

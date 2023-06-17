@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<h2>YouTube Subscribe Button</h2>
-		<button class="js-subscribe-button" onclick="subscribe()">Subscribe</button>
+		<button class="js-subscribe-button">Subscribe</button>
 
 		<p>Rock Paper Scissors</p>
 		<a href="09-rock-paper-scissors.html">Click here</a>
@@ -16,55 +16,12 @@
 		<p>Orders under $40 = +$10 shipping.</p>
 		<p>Orders over $40 = FREE shipping.</p>
 		<!-- Input = void element -->
-		<input
-			placeholder="Cost of order"
-			class="js-cost-input"
-			onkeydown="handleCostKeydown(event)" />
-		<button onclick="calculateTotal()">Calculate</button>
+
+		<input placeholder="Cost of order" class="js-cost-input" />
+
+		<button class="calculate-button">Calculate</button>
 		<p class="js-total-cost"></p>
-		<script>
-			/*
-			String(25);
 
-			// ! NOTE: Type coercion: If a string only contains a number and you - * / then it will be converted into a number.
-
-			console.log("25" - 5);
-
-			// => 255. Adding works differently.
-			console.log("25" + 5);
-			// Don't do math using strings.
-
-			// You don't have to type 'window' at the front.
-      window.document;
-      window.console;
-      window.console.log("window");
-      window.alert("Popup!");
-      */
-
-			const subscribe = () => {
-				const button = document.querySelector("button.js-subscribe-button");
-
-				button.innerHTML =
-					button.innerText === "Subscribe" ? "Subscribed" : "Subscribe";
-			};
-
-			const calculateTotal = () => {
-				const inputElement = document.querySelector("input.js-cost-input");
-
-				let cost = Number(inputElement.value) * 100;
-
-				// "25" + 10 = 2510
-				// Type coercion
-				if (cost < 4000) cost += 1000;
-
-				document.querySelector("p.js-total-cost").innerHTML = `$${cost / 100}`;
-			};
-
-			const handleCostKeydown = (event) =>
-				event.key === "Enter" && calculateTotal();
-
-			// ! NOTE: clicks, keydowns = events.
-			// ! NOTE: onclick, onkeydown = event listener.
-		</script>
+		<script src="scripts/09-dom-projects.js"></script>
 	</body>
 </html>

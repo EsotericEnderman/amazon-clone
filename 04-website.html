@@ -5,39 +5,13 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Testing and Buttons</title>
-		<style>
-			/*
-        This is a comment
-      */
-			button.red-button {
-				color: white;
-				background-color: green;
-				border: none;
-			}
-
-			button.yellow-button {
-				background-color: yellow;
-			}
-
-			button.add-to-cart {
-				background-color: yellow;
-			}
-
-			button.buy-now {
-				background-color: orange;
-			}
-		</style>
+		<link rel="stylesheet" href="styles/04-website.css" />
 	</head>
 	<body>
 		<!--
       This is a comment
     -->
-		<button
-			title="Good job!"
-			class="red-button"
-			onclick="console.log('AHH! I got clicked!'); alert('Why did you click the button?')">
-			hello
-		</button>
+		<button title="Good job!" class="red-button">hello</button>
 
 		<p>paragraph of <button class="yellow-button">hello</button> text</p>
 
@@ -53,39 +27,9 @@
 
 		<p>Price: $7.99</p>
 
-		<button class="add-to-cart" onclick="alert('Successfully added to cart!')">
-			Add to cart
-		</button>
-		<button
-			class="buy-now"
-			onclick="console.log('Loading...'); alert('Purchased!')">
-			Buy now
-		</button>
+		<button class="add-to-cart">Add to cart</button>
+		<button class="buy-now">Buy now</button>
 
-		<script>
-			// This is a comment.
-			// This code creates a popup. (Kind of annoying)
-			// alert("Hello");
-
-			// Single-line comment.
-
-			/*
-
-      A
-      big
-      multi
-      line
-      comment.
-
-      */
-
-			// Logs 'Hello' to the console.
-			console.log("Hello!");
-
-			console.log("Welcome!");
-
-			console.log(2 + 2);
-			console.log("some" + "text");
-		</script>
+		<script src="scripts/04-website.js"></script>
 	</body>
 </html>

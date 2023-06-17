@@ -9,21 +9,14 @@
 	<body>
 		<h2>YouTube Subscribe Button</h2>
 		<!-- Common practice: use different classes for CSS and JS -->
-		<button class="js-subscribe-button subscribe-button" onclick="subscribe()">
-			Subscribe
-		</button>
+		<button class="js-subscribe-button subscribe-button">Subscribe</button>
 
 		<h2>Amazon Shipping Calculator</h2>
 		<p>Orders under $40 = +$10 shipping.</p>
 		<p>Orders over $40 = FREE shipping.</p>
 		<!-- Input = void element -->
-		<input
-			placeholder="Cost of order"
-			class="js-cost-input cost-input"
-			onkeydown="handleCostKeydown(event)" />
-		<button onclick="calculateTotal()" class="calculate-button">
-			Calculate
-		</button>
+		<input placeholder="Cost of order" class="js-cost-input cost-input" />
+		<button class="calculate-button js-calculate-button">Calculate</button>
 		<p class="js-total-cost"></p>
 
 		<p>Rock Paper Scissors</p>
@@ -35,19 +28,13 @@
 
 		<button class="js-button test-button">Test</button>
 
-		<button
-			class="js-switch-button-gaming switch-button"
-			onclick="buttonToggle('gaming')">
+		<button class="js-switch-button-gaming js-switch-button switch-button">
 			Gaming
 		</button>
-		<button
-			class="js-switch-button-music switch-button"
-			onclick="buttonToggle('music')">
+		<button class="js-switch-button-music js-switch-button switch-button">
 			Music
 		</button>
-		<button
-			class="js-switch-button-tech switch-button"
-			onclick="buttonToggle('tech')">
+		<button class="js-switch-button-tech js-switch-button switch-button">
 			Tech
 		</button>
 

@@ -1,26 +1,22 @@
+// @ts-nocheck
 // ! Note: Logical operators have a lower priority than comparison operators and math operators.
 
-// @ts-ignore
 // eslint-disable-next-line prefer-const
 let score = JSON.parse(localStorage.getItem("score")) ?? {
 	wins: 0,
 	losses: 0,
-	ties: 0,
+	draws: 0,
 };
 
-// @ts-ignore
 const updateScoreElement = () => {
 	document.querySelector(
 		"p.js-score",
-	).innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+	).innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Draws: ${score.draws}`;
 };
-
-updateScoreElement();
 
 /**
  * @returns {"rock" | "paper" | "scissors"}
  */
-// @ts-ignore
 const pickComputerMove = () => {
 	const randomNumber = Math.random();
 
@@ -35,14 +31,12 @@ const pickComputerMove = () => {
  * @param {"rock" | "paper" | "scissors"} playerMove
  * @returns {void}
  */
-// eslint-disable-next-line no-unused-vars
-// @ts-ignore
 const playGame = (playerMove) => {
 	const computerMove = pickComputerMove();
 
 	const result =
 		computerMove === playerMove
-			? "Tie"
+			? "Draw"
 			: (computerMove === "rock" && playerMove === "scissors") ||
 			  (computerMove === "paper" && playerMove === "rock") ||
 			  (computerMove === "scissors" && playerMove === "paper")
@@ -53,37 +47,29 @@ const playGame = (playerMove) => {
 		? score.wins++
 		: result === "You lose"
 		? score.losses++
-		: score.ties++;
+		: score.draws++;
 
 	localStorage.setItem("score", JSON.stringify(score));
 
 	updateScoreElement();
 
 	document.querySelector("p.js-result").innerHTML = `${result}.`;
-	document.querySelector("p.js-moves-chosen").innerHTML = `You <img alt="${
-		playerMove[0].toUpperCase
-	}${playerMove.slice(
-		1,
-	)} Emoji" src="images/${playerMove}-emoji.png" class="move-icon" /><img alt="${
-		computerMove[0].toUpperCase
-	}${computerMove.slice(
-		1,
-	)} Emoji" src="images/${computerMove}-emoji.png" class="move-icon" /> Computer`;
+	document.querySelector(
+		"p.js-moves-chosen",
+	).innerHTML = `You - ${playerMove} &#183; ${computerMove} - Computer`;
 };
 
-// @ts-ignore
 const resetScoreButton = document.querySelector("button.js-reset-score-button");
 resetScoreButton.addEventListener("click", () => {
-	score = {wins: 0, losses: 0, ties: 0};
+	score = {wins: 0, losses: 0, draws: 0};
 	updateScoreElement();
 	localStorage.removeItem("score");
 });
 
-const rockButton = document.querySelector("button.js-rock-move-button");
-rockButton.addEventListener("click", () => playGame("rock"));
-
-const paperButton = document.querySelector("button.js-paper-move-button");
-paperButton.addEventListener("click", () => playGame("paper"));
-
-const scissorsButton = document.querySelector("button.js-scissors-move-button");
-scissorsButton.addEventListener("click", () => playGame("scissors"));
+document
+	.querySelectorAll("button.js-playgame-button")
+	.forEach((button) =>
+		button.addEventListener("click", () =>
+			playGame(button.innerHTML.toLowerCase().trim()),
+		),
+	);

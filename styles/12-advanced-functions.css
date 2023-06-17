@@ -1,0 +1,11 @@
+p.add-to-cart-message {
+	transition: opacity 0.25s;
+	opacity: 0;
+}
+
+/* ONE WAY TRANSITION: Override the transition with 0s on the second selector */
+
+p.add-to-cart-message-opaque {
+	opacity: 1;
+	transition: opacity 0s;
+}

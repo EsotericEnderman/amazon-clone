@@ -8,40 +8,19 @@
 	</head>
 	<body>
 		<p>Cart Quantity</p>
-		<button onclick="updateCart(-3)">-3</button>
-		<button onclick="updateCart(-2)">-2</button>
-		<button onclick="updateCart(-1)">Remove from cart</button>
-		<button onclick="updateCart(1)">Add to Cart</button>
-		<button onclick="updateCart(2)">+2</button>
-		<button onclick="updateCart(3)">+3</button>
-		<button onclick="updateCart(4)">+4</button>
-		<button onclick="updateCart(5)">+5</button>
-		<button
-			onclick="cartQuantity = 0; document.querySelector('p.js-cart-quantity').innerHTML = `Cart Quantity: 0`;">
-			Reset Cart
-		</button>
+		<button class="update-cart-button">-3</button>
+		<button class="update-cart-button">-2</button>
+		<button class="update-cart-button">Remove from cart</button>
+		<button class="update-cart-button">Add to cart</button>
+		<button class="update-cart-button">+2</button>
+		<button class="update-cart-button">+3</button>
+		<button class="update-cart-button">+4</button>
+		<button class="update-cart-button">+5</button>
+
+		<button class="reset-cart-button">Reset Cart</button>
+
 		<p class="js-cart-quantity">Cart Quantity: 0</p>
-		<script>
-			let cartQuantity = 0;
 
-			/**
-			 * @param {number} number
-			 * @returns {void}
-			 */
-			const updateCart = (number) => {
-				if (cartQuantity + number > 10) {
-					return alert("The cart is full!");
-				}
-
-				if (cartQuantity + number < 0) {
-					return alert("Not enough items in the cart");
-				}
-
-				cartQuantity += number;
-				document.querySelector(
-					"p.js-cart-quantity",
-				).innerHTML = `Cart Quantity: ${cartQuantity}`;
-			};
-		</script>
+		<script src="scripts/05-cart-quantity.js"></script>
 	</body>
 </html>

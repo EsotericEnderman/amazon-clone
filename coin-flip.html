@@ -6,24 +6,8 @@
 		<title>Coin Flip Game</title>
 	</head>
 	<body>
-		<button onclick="playGame()">Heads</button>
-		<button onclick="playGame()">Tails</button>
-		<script>
-			const stats = JSON.parse(localStorage.getItem("stats")) ?? {
-				wins: 0,
-				losses: 0,
-			};
-
-			const playGame = () => {
-				const result = Math.random() > 0.5 ? "You win!" : "You lose!";
-
-				result === "You win!" ? stats.wins++ : stats.losses++;
-
-				localStorage.setItem("stats", JSON.stringify(stats));
-
-				console.log(result);
-				console.log("Wins: ", stats.wins, "Losses: ", stats.losses);
-			};
-		</script>
+		<button class="play-game-button">Heads</button>
+		<button class="play-game-button">Tails</button>
+		<script src="scripts/coin-flip.js"></script>
 	</body>
 </html>
