@@ -2,6 +2,8 @@ const productsGrid = document.querySelector("div.products-grid");
 
 productsGrid.innerHTML = "";
 
+// @ts-ignore
+// eslint-disable-next-line no-undef
 products.forEach((product) => {
 	productsGrid.innerHTML += `
     <div class="product-container">
@@ -13,7 +15,7 @@ products.forEach((product) => {
       </div>
 
       <div class="product-name limit-text-to-2-lines">
-        Black and Gray Athletic Cotton Socks - 6 Pairs
+        ${product.name}
       </div>
 
       <div class="product-rating-container">
@@ -50,7 +52,36 @@ products.forEach((product) => {
         Added
       </div>
 
-      <button class="add-to-cart-button button-primary">Add to Cart</button>
+      <button class="add-to-cart-button js-add-to-cart-button button-primary">
+          Add to Cart
+      </button>
     </div>
   `;
+
+	// Note - Data attribute:
+	// Have to start with "data-".
+	// Separate words with a - (kebab case)
+	// Gets converted to camelcase in JS.
+	// E.g., data-product-name => button.dataset.productName
 });
+
+const selectElements = document.querySelectorAll("select");
+
+// Better solution: find the product by the index, and have the cart be an object.
+// Object key = product ID
+// Object value = quantity
+document
+	.querySelectorAll("button.js-add-to-cart-button")
+	.forEach((button, index) =>
+		button.addEventListener("click", () => {
+			// @ts-ignore
+			// eslint-disable-next-line no-undef
+			cart[products[index].id] ??= {quantity: 0};
+
+			// @ts-ignore
+			// eslint-disable-next-line no-undef
+			cart[products[index].id].quantity += parseInt(
+				selectElements[index].value,
+			);
+		}),
+	);
