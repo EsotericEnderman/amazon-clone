@@ -1,9 +1,10 @@
+// @ts-nocheck
+/* eslint-disable no-undef */
+/* eslint-disable no-use-before-define */
+/* eslint-disable func-style */
 const productsGrid = document.querySelector("div.products-grid");
 
 productsGrid.innerHTML = "";
-
-// @ts-ignore
-// eslint-disable-next-line no-undef
 products.forEach((product) => {
 	productsGrid.innerHTML += `
     <div class="product-container">
@@ -74,14 +75,25 @@ document
 	.querySelectorAll("button.js-add-to-cart-button")
 	.forEach((button, index) =>
 		button.addEventListener("click", () => {
-			// @ts-ignore
-			// eslint-disable-next-line no-undef
 			cart[products[index].id] ??= {quantity: 0};
 
-			// @ts-ignore
-			// eslint-disable-next-line no-undef
-			cart[products[index].id].quantity += parseInt(
-				selectElements[index].value,
-			);
+			cart[products[index].id].quantity += Number(selectElements[index].value);
+
+			updateCart();
 		}),
 	);
+
+const cartQuantity = document.querySelector("div.cart-quantity");
+
+updateCart();
+
+function updateCart() {
+	localStorage.setItem("cart", JSON.stringify(cart));
+
+	let total = 0;
+	for (const item in cart) {
+		total += cart[item].quantity;
+	}
+
+	cartQuantity.innerHTML = `${total}`;
+}
