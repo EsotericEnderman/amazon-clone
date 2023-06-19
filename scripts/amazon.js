@@ -68,32 +68,33 @@ products.forEach((product) => {
 
 const selectElements = document.querySelectorAll("select");
 
+const addedToCartMessages = document.querySelectorAll("div.added-to-cart");
+
 // Better solution: find the product by the index, and have the cart be an object.
-// Object key = product ID
+// Object key = index,
 // Object value = quantity
 document
 	.querySelectorAll("button.js-add-to-cart-button")
-	.forEach((button, index) =>
-		button.addEventListener("click", () => {
-			cart[products[index].id] ??= {quantity: 0};
+	.forEach((button, index) => {
+		let interval;
 
-			cart[products[index].id].quantity += Number(selectElements[index].value);
+		button.addEventListener("click", () => {
+			cart[index] ??= {quantity: 0, deliveryDateOption: 0};
+
+			cart[index].quantity += Number(selectElements[index].value);
 
 			updateCart();
-		}),
-	);
 
-const cartQuantity = document.querySelector("div.cart-quantity");
+			addedToCartMessages[index].classList.add("added-to-cart-opaque");
+
+			if (interval) clearInterval(interval);
+
+			interval = setTimeout(
+				() =>
+					addedToCartMessages[index].classList.remove("added-to-cart-opaque"),
+				2000,
+			);
+		});
+	});
 
 updateCart();
-
-function updateCart() {
-	localStorage.setItem("cart", JSON.stringify(cart));
-
-	let total = 0;
-	for (const item in cart) {
-		total += cart[item].quantity;
-	}
-
-	cartQuantity.innerHTML = `${total}`;
-}
