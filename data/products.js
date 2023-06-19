@@ -469,4 +469,24 @@ const products = [
 		priceCents: 2400,
 		keywords: ["sweaters", "hoodies", "apparel", "mens"],
 	},
+	{
+		id: "bd5785e1-5425-453h-b5cf-47bdf344a455",
+		image: "images/products/backpack.jpg",
+		name: "Back to School Backpack",
+		rating: {
+			stars: 4,
+			count: 8653,
+		},
+		priceCents: 5600,
+	},
+	{
+		id: "3f5345e1-4445-444h-b6cf-77deg546a555",
+		image: "images/products/umbrella.jpg",
+		name: "Top Quality Water-Repelling Umbrella",
+		rating: {
+			stars: 5,
+			count: 12435,
+		},
+		priceCents: 2399,
+	},
 ];
