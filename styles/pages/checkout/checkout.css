@@ -209,3 +209,14 @@
 	margin-top: 11px;
 	margin-bottom: 15px;
 }
+
+.view-products-link {
+	padding: 8px 15px;
+	margin-top: 10px;
+
+	text-decoration: none;
+
+	display: inline-block;
+
+	font-size: 16px;
+}
