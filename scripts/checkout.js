@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable func-style */
 /* eslint-disable no-undef */
 // @ts-nocheck
@@ -12,6 +13,37 @@ const priceSummaryDiv = document.querySelector("div.js-payment-summary-money");
 const priceSummaryDelivery = document.querySelector(
 	"div.js-payment-summary-money-shipping",
 );
+
+const totalBeforeTax = document.querySelector("div.js-total-before-tax");
+
+const estimatedTax = document.querySelector("div.js-estimated-tax");
+
+const orderTotal = document.querySelector("div.js-order-total");
+
+const days = [
+	"Monday",
+	"Tuesday",
+	"Wednesday",
+	"Thursday",
+	"Friday",
+	"Saturday",
+	"Sunday",
+];
+
+const months = [
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December",
+];
 
 function updateCheckout() {
 	orderSummary.innerHTML = "";
@@ -29,10 +61,25 @@ function updateCheckout() {
 		totalPriceCents += products[key].priceCents * cart[key].quantity;
 		totalDeliveryCostCents += cart[key].deliveryDateOption * 500 - 1;
 
+		console.log(cart);
+
 		orderSummary.innerHTML += `
 
     <div class="cart-item-container">
-      <div class="delivery-date">Delivery date: Tuesday, June 21</div>
+      <div class="delivery-date js-delivery-date">Delivery date: ${formatDate(
+				new Date(
+					Date.now() +
+						1000 *
+							60 *
+							60 *
+							24 *
+							(cart[key].deliveryDateOption === 0
+								? 9
+								: cart[key].deliveryDateOption === 1
+								? 3
+								: 1),
+				),
+			)}</div>
 
       <div class="cart-item-details-grid">
         <img
@@ -51,7 +98,7 @@ function updateCheckout() {
             <span> Quantity: <span class="quantity-label">${
 							cart[key].quantity
 						}</span> </span>
-            <span class="update-quantity-link link-primary">
+            <span class="update-quantity-link link-primary js-update-quantity-link">
               Update
             </span>
             <span class="delete-quantity-link link-primary js-delete-quantity-link">
@@ -67,11 +114,14 @@ function updateCheckout() {
           <div class="delivery-option">
             <input
               type="radio"
-              checked
               class="delivery-option-input js-delivery-option-input"
-              name="delivery-option-${index}" />
+              name="delivery-option-${index}" ${
+			cart[key].deliveryDateOption === 0 ? "checked" : ""
+		} />
             <div>
-              <div class="delivery-option-date">Tuesday, June 21</div>
+              <div class="delivery-option-date">${formatDate(
+								new Date(Date.now() + 1000 * 60 * 60 * 24 * 9),
+							)}</div>
               <div class="delivery-option-price">FREE Shipping</div>
             </div>
           </div>
@@ -79,9 +129,13 @@ function updateCheckout() {
             <input
               type="radio"
               class="delivery-option-input js-delivery-option-input"
-              name="delivery-option-${index}" />
+              name="delivery-option-${index}" ${
+			cart[key].deliveryDateOption === 1 ? "checked" : ""
+		}/>
             <div>
-              <div class="delivery-option-date">Wednesday, June 15</div>
+              <div class="delivery-option-date">${formatDate(
+								new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+							)}</div>
               <div class="delivery-option-price">$4.99 - Shipping</div>
             </div>
           </div>
@@ -89,9 +143,13 @@ function updateCheckout() {
             <input
               type="radio"
               class="delivery-option-input js-delivery-option-input"
-              name="delivery-option-${index}" />
+              name="delivery-option-${index}" ${
+			cart[key].deliveryDateOption === 2 ? "checked" : ""
+		}/>
             <div>
-              <div class="delivery-option-date">Monday, June 13</div>
+              <div class="delivery-option-date">${formatDate(
+								new Date(Date.now() + 1000 * 60 * 60 * 24),
+							)}</div>
               <div class="delivery-option-price">$9.99 - Shipping</div>
             </div>
           </div>
@@ -113,6 +171,21 @@ function updateCheckout() {
 		0,
 	).toFixed(2)}`;
 
+	totalBeforeTax.innerHTML = `$${(
+		(totalPriceCents + totalDeliveryCostCents) /
+		100
+	).toFixed(2)}`;
+
+	estimatedTax.innerHTML = `$${(
+		(totalPriceCents + totalDeliveryCostCents) /
+		1000
+	).toFixed(2)}`;
+
+	orderTotal.innerHTML = `$${(
+		(totalPriceCents + totalDeliveryCostCents) *
+		0.011
+	).toFixed(2)}`;
+
 	document
 		.querySelectorAll("span.js-delete-quantity-link")
 		.forEach((span, spanIndex) =>
@@ -121,6 +194,16 @@ function updateCheckout() {
 
 				updateCart();
 				updateCheckout();
+			}),
+		);
+
+	document
+		.querySelectorAll("span.js-update-quantity-link")
+		.forEach((span, spanIndex) =>
+			span.addEventListener("click", () => {
+				span.innerHTML = `
+        <input type="number" value="1" class="new-quantity-input"></input>
+      `;
 			}),
 		);
 
@@ -137,16 +220,33 @@ function updateCheckout() {
 
   `;
 	}
+
+	document
+		.querySelectorAll("input.js-delivery-option-input")
+		.forEach((select, selectIndex) =>
+			select.addEventListener("click", () => {
+				console.log("clicked");
+
+				const cartIndex = Math.floor(selectIndex / 3);
+
+				cart[cartIndex].deliveryDateOption = selectIndex % 3;
+
+				updateCart();
+				updateCheckout();
+			}),
+		);
 }
 
 updateCheckout();
 
-document
-	.querySelectorAll("input.js-delivery-option-input")
-	.forEach((select, index) =>
-		select.addEventListener("click", () => {
-			const cartIndex = Math.floor(index / 3);
+/**
+ *
+ * @param {Date} date
+ */
+function formatDate(date) {
+	return `${days[date.getDay() - 1]}, ${
+		months[date.getMonth()]
+	} ${date.getDate()}`;
+}
 
-			cart[cartIndex].deliveryDateOption = index % 3;
-		}),
-	);
+console.log(formatDate(new Date(Date.now())));
