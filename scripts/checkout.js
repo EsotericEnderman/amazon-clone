@@ -61,8 +61,6 @@ function updateCheckout() {
 		totalPriceCents += products[key].priceCents * cart[key].quantity;
 		totalDeliveryCostCents += cart[key].deliveryDateOption * 500 - 1;
 
-		console.log(cart);
-
 		orderSummary.innerHTML += `
 
     <div class="cart-item-container">
@@ -190,7 +188,9 @@ function updateCheckout() {
 		.querySelectorAll("span.js-delete-quantity-link")
 		.forEach((span, spanIndex) =>
 			span.addEventListener("click", () => {
-				delete cart[Object.keys(cart)[spanIndex]];
+				const keys = Object.keys(cart);
+				const keyToDelete = keys[spanIndex];
+				delete cart[keyToDelete];
 
 				updateCart();
 				updateCheckout();
@@ -225,8 +225,6 @@ function updateCheckout() {
 		.querySelectorAll("input.js-delivery-option-input")
 		.forEach((select, selectIndex) =>
 			select.addEventListener("click", () => {
-				console.log("clicked");
-
 				const cartIndex = Math.floor(selectIndex / 3);
 				const keys = Object.keys(cart);
 				cart[keys[cartIndex]].deliveryDateOption = selectIndex % 3;
@@ -248,5 +246,3 @@ function formatDate(date) {
 		months[date.getMonth()]
 	} ${date.getDate()}`;
 }
-
-console.log(formatDate(new Date(Date.now())));
