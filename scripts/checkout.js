@@ -228,8 +228,8 @@ function updateCheckout() {
 				console.log("clicked");
 
 				const cartIndex = Math.floor(selectIndex / 3);
-
-				cart[cartIndex].deliveryDateOption = selectIndex % 3;
+				const keys = Object.keys(cart);
+				cart[keys[cartIndex]].deliveryDateOption = selectIndex % 3;
 
 				updateCart();
 				updateCheckout();
