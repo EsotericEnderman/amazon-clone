@@ -244,7 +244,7 @@ updateCheckout();
  * @param {Date} date
  */
 function formatDate(date) {
-	return `${days[date.getDay() - 1]}, ${
+	return `${days[date.getDay()]}, ${
 		months[date.getMonth()]
 	} ${date.getDate()}`;
 }
