@@ -1,7 +1,3 @@
-// @ts-nocheck
-/* eslint-disable no-undef */
-/* eslint-disable no-use-before-define */
-/* eslint-disable func-style */
 const productsGrid = document.querySelector("div.products-grid");
 
 productsGrid.innerHTML = "";

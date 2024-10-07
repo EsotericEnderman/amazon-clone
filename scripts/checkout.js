@@ -1,8 +1,3 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable func-style */
-/* eslint-disable no-undef */
-// @ts-nocheck
-
 const orderSummary = document.querySelector("div.js-order-summary");
 const checkoutItemCount = document.querySelector("a.js-item-count");
 
