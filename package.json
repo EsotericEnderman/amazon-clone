@@ -1,38 +1,28 @@
 {
 	"name": "amazon-clone",
 	"description": "This is a project I'm doing to learn how to use CSS, HTML and JS together. I'm following a YouTube course by SuperSimpleDev. I recommend the course for anyone who wants to learn how to use CSS, HTML and JS together.",
-	"author": "@🍉 Slqmy#5014",
+	"author": "Esoteric Enderman",
 	"version": "0.7.0",
-	"license": "ISC",
+	"license": "MIT",
 	"keywords": [
 		"css",
 		"html",
+		"js",
 		"learning",
 		"website",
+		"amazon",
 		"clone",
-		"js",
-		"html-css",
-		"css-js",
-		"htmlcss",
-		"htmljs",
-		"html-js-css",
-		"js-css-html",
-		"amazon-clone",
-		"css-html",
-		"htmlcssjs",
-		"csshtml",
-		"css-html-js",
-		"js-html-css",
-		"supersimpledev",
-		"css-js-html"
+		"super",
+		"simple",
+		"dev"
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Slqmy/Amazon-Clone.git"
+		"url": "git+https://github.com/EsotericEnderman/amazon-clone.git"
 	},
-	"homepage": "https://github.com/Slqmy/Amazon-Clone#readme",
+	"homepage": "https://github.com/EsotericEnderman/amazon-clone#readme",
 	"bugs": {
-		"url": "https://github.com/Slqmy/Amazon-Clone/issues"
+		"url": "https://github.com/EsotericEnderman/amazon-clone/issues"
 	},
 	"scripts": {
 		"prettier": "npx prettier --write .",
