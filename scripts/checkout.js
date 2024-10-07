@@ -238,7 +238,6 @@ function updateCheckout() {
 updateCheckout();
 
 /**
- *
  * @param {Date} date
  */
 function formatDate(date) {
